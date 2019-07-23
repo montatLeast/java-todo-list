@@ -21,7 +21,7 @@ public class TodoListController {
     TodoListService todoListService;
 
     @Autowired
-    private TodoListRepo todoListRepo;
+    TodoListRepo todoListRepo;
 
 
     @GetMapping()

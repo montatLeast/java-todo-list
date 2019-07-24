@@ -1,6 +1,7 @@
 create table items (
     id bigint primary key,
-    content varchar(200)
+    content varchar(200),
+    status bool,
 );
 
 create sequence HIBERNATE_SEQUENCE

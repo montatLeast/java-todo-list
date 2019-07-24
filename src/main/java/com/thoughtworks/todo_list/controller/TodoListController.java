@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/todoItems")
+@RequestMapping("/todo_items")
 @CrossOrigin
 //解决跨域访问
 public class TodoListController {
@@ -44,7 +44,7 @@ public class TodoListController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity modifyTodoItemCapacity(@RequestBody TodoItem todoItem, @PathVariable Long id){
+    public ResponseEntity modifyTodoItem(@RequestBody TodoItem todoItem, @PathVariable Long id){
         TodoItem todoItem1;
         try{
             todoItem1 = todoListService.modifyTodoItemContent(todoItem, id);

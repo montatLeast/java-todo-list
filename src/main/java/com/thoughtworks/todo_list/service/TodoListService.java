@@ -30,13 +30,13 @@ public class TodoListService {
     }
 
     public TodoItem addTodoItem(TodoItem todoItem) throws DuplicateException{
-        checkDuplicate(todoItem);
+        checkDuplicate(todoItem, todoItem.getId());
         TodoItem todoItem1 = todoListRepo.save(todoItem);
         return todoItem1;
     }
 
     public TodoItem modifyTodoItemContent(TodoItem todoItem, Long id)throws DuplicateException{
-        checkDuplicate(todoItem);
+        checkDuplicate(todoItem, id);
         TodoItem todoItem1 = todoListRepo.save(todoItem);
         return todoItem1;
     }
@@ -47,10 +47,10 @@ public class TodoListService {
         return todoItem1;
     }
 
-    public void checkDuplicate(TodoItem todoItem){
+    public void checkDuplicate(TodoItem todoItem, Long id){
         List<TodoItem> todoItems = getAllItems();
         if (todoItems.size() > 0){
-            List<String> contents = todoItems.stream().map(item -> item.getContent()).collect(Collectors.toList());
+            List<String> contents = todoItems.stream().filter(item -> item.getId()!= id).map(item -> item.getContent()).collect(Collectors.toList());
             if (contents.contains(todoItem.getContent())){
                 throw new DuplicateException();
             }
